@@ -8,7 +8,7 @@ Take a look at the Templates and which payload properties are required for each 
 {
 	"id": "node",
 	"shape": {
-		"type": "operator",
+		"type": "operation",
 		"scale": 1
 	},
 	"payload": {
