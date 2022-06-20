@@ -24,6 +24,8 @@ function shapeBuilder(data, TemplateAPI) {
 	const { body, border, state, diamond, largeDiamond } = addBaseShape();
 	border.classed("gly-selectable", true);
 	setState(state);
+	const bbox = Shape.getBBox(shape);
+
 	const fullName = addFullName();
 	const { initials, largeInitials } = addInitials();
 	const sexIndicator = addSexIndicator();
@@ -112,17 +114,13 @@ function shapeBuilder(data, TemplateAPI) {
 	}
 
 	function addFullName() {
-		if (!data.payload?.name) return shape.select("g.full-name");
-		shape.select("g.full-name").remove();
-		const bbox = Shape.getBBox(shape);
 		const text = (data.payload?.name?.first ?? "") + "\n" + (data.payload?.name?.last ?? "");
 		const placeholder = data.payload?.name?.first || data.payload?.name?.last ? null : "Vorname Nachname";
 		const nameShape = TextCollection(
 			placeholder ? placeholder : text,
 			CollectionStyle(300, bbox.width, 0, bbox.height * 0.25, 80, 80, 2, Alignment.Center, [800, 800]),
 			[
-				ShapeStyle("class", "gly_text", true),
-				ShapeStyle("class", "dark", true),
+				ShapeStyle("class", "gly_text.dark", true),
 				ShapeStyle("font-size", "160", true),
 				ShapeStyle("class", "gly_gray_fill.lighten", !!placeholder),
 			]
@@ -133,14 +131,6 @@ function shapeBuilder(data, TemplateAPI) {
 	}
 
 	function addInitials() {
-		if (!data.payload?.name) {
-			return {
-				initials: shape.select("g.initials"),
-				largeInitials: shape.select("g.large-initials"),
-			};
-		}
-		shape.select("g.initials").remove();
-		const bbox = Shape.getBBox(shape);
 		const text = (data.payload?.name?.first ?? "")[0] + (data.payload?.name?.last ?? "")[0];
 		const placeholder = data.payload?.name?.first || data.payload?.name?.last ? null : "VN";
 
@@ -174,9 +164,6 @@ function shapeBuilder(data, TemplateAPI) {
 	}
 
 	function addSexIndicator() {
-		if (!data.payload?.sex) return shape.select("g.sex-indicator");
-		shape.select("g.sex-indicator").remove();
-		const bbox = Shape.getBBox(shape);
 		const text = data.payload?.sex[0].toUpperCase();
 		const sexShape = TextCollection(
 			text,
@@ -194,9 +181,6 @@ function shapeBuilder(data, TemplateAPI) {
 	}
 
 	function addAgeIndicator() {
-		if (!data.payload?.age) return shape.select("g.age-indicator");
-		shape.select("g.age-indicator").remove();
-		const bbox = Shape.getBBox(shape);
 		const text = data.payload?.age.toString() ?? "";
 		const ageShape = TextCollection(
 			text,
@@ -217,14 +201,6 @@ function shapeBuilder(data, TemplateAPI) {
 	}
 
 	function addAccessibilityTag() {
-		if (!data.payload?.accessibility) {
-			return {
-				accessibilityTag: shape.select("g.accessibility-tag"),
-				largeAccessibilityTag: shape.select("g.large-accessibility-tag"),
-			};
-		}
-		const bbox = Shape.getBBox(shape);
-		shape.select("g.accessibility-tag").remove();
 		const accessibilityTag = TagShape(
 			data.payload?.accessibility ?? " – ",
 			TagStyle(
@@ -260,8 +236,6 @@ function shapeBuilder(data, TemplateAPI) {
 	}
 
 	function addTagCollection() {
-		shape.select("g.tag-collection").remove();
-		const bbox = Shape.getBBox(shape);
 		const tagCollection = TagCollection(
 			data.payload?.tags ?? [],
 			CollectionStyle(800, bbox.width, 0, bbox.height * 0.72, 60, 60, 3, Alignment.Center, [370, 540, 710]),
