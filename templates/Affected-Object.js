@@ -18,6 +18,7 @@ function shapeBuilder(data, TemplateAPI) {
 		TagStyle,
 	} = TemplateAPI;
 
+	addStyles();
 	const shape = Shape.create("g");
 
 	const { body, border, state, rect, largeRect } = addBaseShape();
@@ -177,7 +178,10 @@ function shapeBuilder(data, TemplateAPI) {
 			TagStyle(
 				[40, 100],
 				[ShapeStyle("class", "gly_text.dark", true), ShapeStyle("font-size", "120", true)],
-				[ShapeStyle("class", "gly_gray_fill.lighten", true), ShapeStyle("class", "demo_template_tag", true)],
+				[
+					ShapeStyle("class", "gly_gray_fill.lighten", true),
+					ShapeStyle("class", "affected-object-tag-fill", true),
+				],
 				110
 			)
 		);
@@ -185,4 +189,21 @@ function shapeBuilder(data, TemplateAPI) {
 		shape.append(() => tagCollection.node());
 		return tagCollection;
 	}
+}
+
+function addStyles() {
+	let style = document.querySelector("[data-style='affected-object']");
+	if (style) return;
+	style = document.createElement("style");
+	style.setAttribute("data-style", "affected-object");
+	style.type = "text/css";
+	style.innerHTML = `
+		svg .affected-object-tag-fill {
+			fill: #f4f4f4;
+		}
+		svg.dark .affected-object-tag-fill {
+			fill: #404040;
+		}
+	`;
+	document.getElementsByTagName("head")[0].appendChild(style);
 }

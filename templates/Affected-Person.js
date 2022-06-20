@@ -19,6 +19,7 @@ function shapeBuilder(data, TemplateAPI) {
 		EmitEvent,
 	} = TemplateAPI;
 
+	addStyles();
 	const shape = Shape.create("g");
 
 	const { body, border, state, diamond, largeDiamond } = addBaseShape();
@@ -242,7 +243,10 @@ function shapeBuilder(data, TemplateAPI) {
 			TagStyle(
 				[40, 100],
 				[ShapeStyle("class", "gly_text.dark", true), ShapeStyle("font-size", "120", true)],
-				[ShapeStyle("class", "gly_gray_fill.lighten", true), ShapeStyle("class", "demo_template_tag", true)],
+				[
+					ShapeStyle("class", "gly_gray_fill.lighten", true),
+					ShapeStyle("class", "affected-person-tag-fill", true),
+				],
 				110
 			)
 		);
@@ -250,4 +254,21 @@ function shapeBuilder(data, TemplateAPI) {
 		shape.append(() => tagCollection.node());
 		return tagCollection;
 	}
+}
+
+function addStyles() {
+	let style = document.querySelector("[data-style='affected-person']");
+	if (style) return;
+	style = document.createElement("style");
+	style.setAttribute("data-style", "affected-person");
+	style.type = "text/css";
+	style.innerHTML = `
+		svg .affected-person-tag-fill {
+			fill: #f4f4f4;
+		}
+		svg.dark .affected-person-tag-fill {
+			fill: #404040;
+		}
+	`;
+	document.getElementsByTagName("head")[0].appendChild(style);
 }
