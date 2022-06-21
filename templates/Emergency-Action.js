@@ -103,7 +103,7 @@ function shapeBuilder(data, TemplateAPI) {
 			CollectionStyle(100, bbox.width, 0, bbox.height * 0.37, 80, 80, 1, Alignment.Center, [300]),
 			[
 				ShapeStyle("class", "gly_text.white", true),
-				ShapeStyle("font-size", "300", true),
+				ShapeStyle("font-size", "300px", true),
 				ShapeStyle("class", "gly_gray_fill.lighten", !!placeholder),
 			]
 		);
@@ -117,7 +117,7 @@ function shapeBuilder(data, TemplateAPI) {
 			data.payload?.priority ?? " – ",
 			TagStyle(
 				[40, 120],
-				[ShapeStyle("class", "gly_text.white", true), ShapeStyle("font-size", "140", true)],
+				[ShapeStyle("class", "gly_text.white", true), ShapeStyle("font-size", "140px", true)],
 				[ShapeStyle("class", "gly_black_fill", true)],
 				120
 			)
@@ -132,7 +132,7 @@ function shapeBuilder(data, TemplateAPI) {
 			data.payload?.priority ?? " – ",
 			TagStyle(
 				[50, 160],
-				[ShapeStyle("class", "gly_text.white", true), ShapeStyle("font-size", "180", true)],
+				[ShapeStyle("class", "gly_text.white", true), ShapeStyle("font-size", "180px", true)],
 				[ShapeStyle("class", "gly_black_fill", true)],
 				160
 			)
@@ -153,7 +153,7 @@ function shapeBuilder(data, TemplateAPI) {
 			CollectionStyle(800, bbox.width, 0, bbox.height * 0.72, 60, 60, 3, Alignment.Center, [370, 540, 710]),
 			TagStyle(
 				[40, 100],
-				[ShapeStyle("class", "gly_text.dark", true), ShapeStyle("font-size", "120", true)],
+				[ShapeStyle("class", "gly_text.dark", true), ShapeStyle("font-size", "120px", true)],
 				[
 					ShapeStyle("class", "gly_gray_fill.lighten", true),
 					ShapeStyle("class", "emergency-action-tag-fill", true),

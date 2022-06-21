@@ -81,7 +81,7 @@ function shapeBuilder(data, TemplateAPI) {
 			CollectionStyle(200, bbox.width, 0, bbox.height * 0.2, 80, 80, 1, Alignment.Center, []),
 			[
 				ShapeStyle("class", "gly_text.white", true),
-				ShapeStyle("font-size", "380", true),
+				ShapeStyle("font-size", "380px", true),
 				ShapeStyle("font-weight", "bold", true),
 			]
 		);
@@ -105,7 +105,7 @@ function shapeBuilder(data, TemplateAPI) {
 		const labelShape = TextCollection(
 			data.payload?.label ?? " – ",
 			CollectionStyle(200, bbox.width, 0, bbox.height * 0.55, 80, 80, 1, Alignment.Center, []),
-			[ShapeStyle("class", "gly_text.dark", true), ShapeStyle("font-size", "280", true)]
+			[ShapeStyle("class", "gly_text.dark", true), ShapeStyle("font-size", "280px", true)]
 		);
 		labelShape.classed("label", true);
 		shape.append(() => labelShape.node());
@@ -114,7 +114,7 @@ function shapeBuilder(data, TemplateAPI) {
 		const largeLabelShape = TextCollection(
 			data.payload?.label ?? " – ",
 			CollectionStyle(200, bbox.width, 0, bbox.height * 0.62, 80, 80, 1, Alignment.Center, []),
-			[ShapeStyle("class", "gly_text.dark", true), ShapeStyle("font-size", "380", true)]
+			[ShapeStyle("class", "gly_text.dark", true), ShapeStyle("font-size", "380px", true)]
 		);
 		largeLabelShape.classed("large-label", true);
 		shape.append(() => largeLabelShape.node());
@@ -129,7 +129,7 @@ function shapeBuilder(data, TemplateAPI) {
 			data.payload?.time_label ?? "",
 			TagStyle(
 				[40, 120],
-				[ShapeStyle("class", "gly_text.white", true), ShapeStyle("font-size", "140", true)],
+				[ShapeStyle("class", "gly_text.white", true), ShapeStyle("font-size", "140px", true)],
 				[ShapeStyle("class", "gly_black_fill", true)],
 				120
 			)
@@ -146,7 +146,7 @@ function shapeBuilder(data, TemplateAPI) {
 			"alarmiert",
 			TagStyle(
 				[40, 120],
-				[ShapeStyle("class", "gly_text.white", true), ShapeStyle("font-size", "140", true)],
+				[ShapeStyle("class", "gly_text.white", true), ShapeStyle("font-size", "140px", true)],
 				[ShapeStyle("class", "gly_red_fill", true)],
 				120
 			)
